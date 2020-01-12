@@ -119,6 +119,8 @@ export class DollarApollo {
     const smart = this.queries[key] = new SmartQuery(this.vm, key, finalOptions, false)
     if (!this.vm.$isServer || finalOptions.prefetch !== false) {
       smart.autostart()
+    } else if (this.vm.$isServer) {
+      smart.loading = true
     }
 
     if (!this.vm.$isServer) {
